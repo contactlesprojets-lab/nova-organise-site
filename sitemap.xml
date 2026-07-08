@@ -11,4 +11,10 @@
 <changefreq>weekly</changefreq>
 <priority>0.9</priority>
 </url>
+<!--  Article — Projet de vie MDPH  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/projet-de-vie-mdph.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>
