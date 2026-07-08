@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="FOsGwBstP128rvrSbh0ah2UPeNbWe8-UtvOjBiZ0hSI">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova-Organise — L'organisation qui s'adapte à vous 🪜</title>
+<meta name="description" content="Nova-Organise est une application d'organisation en construction, pensée pour s'adapter à chaque personne : TDAH, TSA, dys, TDC… Rejoignez la liste d'attente.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="canonical" href="https://www.nova-organise.fr/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nova-organise.fr/">
+<meta property="og:title" content="Nova-Organise — L'organisation qui s'adapte à vous 🪜">
+<meta property="og:description" content="Ici, on ne vous demande pas de sauter plus haut. On vous tend un escabeau. Application d'organisation inclusive pour les personnes TDAH, TSA, dys, TDC et leurs aidants.">
+<meta property="og:image" content="https://www.nova-organise.fr/logo.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Nova-Organise">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nova-Organise — L'organisation qui s'adapte à vous 🪜">
+<meta name="twitter:description" content="Application d'organisation inclusive pour les personnes TND et leurs proches. En construction.">
+<meta name="twitter:image" content="https://www.nova-organise.fr/logo.png">
+
+<!-- Données structurées Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nova-Organise",
+  "url": "https://www.nova-organise.fr",
+  "description": "Application d'organisation inclusive pour les personnes concernées par un trouble du neurodéveloppement (TDAH, TSA, dys, TDC) et leurs aidants.",
+  "inLanguage": "fr-FR",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nova-Organise",
+    "url": "https://www.nova-organise.fr",
+    "logo": "https://www.nova-organise.fr/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/nova.organise/",
+      "https://www.instagram.com/novaorganise/",
+      "https://www.tiktok.com/@novaorganise"
+    ]
+  }
+}
+<\/script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════
+     🔗 ZONE À COMPLÉTER — colle tes 4 liens ci-dessous
+     (entre les guillemets). C'est le SEUL endroit à
+     modifier dans tout le fichier.
+     ══════════════════════════════════════════════════ -->
+<script>
+const LIENS = {
+  formulaire: "https://forms.gle/G7RMc7RUuFD3STW47",   /* Google Forms liste d'attente */
+  facebook:   "https://www.facebook.com/nova.organise/",   /* page Facebook */
+  instagram:  "https://www.instagram.com/novaorganise/",   /* profil Instagram */
+  tiktok:     "https://www.tiktok.com/@novaorganise"    /* compte TikTok */
+};
+</script>
+
+<style>
+:root{
+  --beige:#F3EBE1;
+  --creme:#FBF7F2;
+  --lagune:#4F9DAD;
+  --turquoise:#8FCDD3;
+  --encre:#17444F;
+  --corail:#DF9468;
+  --rayon:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:'Atkinson Hyperlegible',system-ui,sans-serif;
+  font-size:1.06rem;line-height:1.7;
+  color:var(--encre);background:var(--beige);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;font-weight:800}
+img{max-width:100%;display:block}
+a{color:var(--lagune)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--encre);color:#fff;padding:.6em 1em;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--lagune);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.eyebrow{
+  display:inline-block;font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lagune);background:rgba(79,157,173,.12);
+  padding:.35em 1em;border-radius:999px;margin-bottom:1rem;
+}
+
+/* ─── header ─── */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(243,235,225,.88);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(23,68,79,.08);
+}
+.nav{display:flex;align-items:center;gap:.8rem;padding:.7rem 0}
+.nav img{width:44px;height:44px;border-radius:50%}
+.nav .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem}
+.nav .etat{font-size:.72rem;background:var(--creme);border:1px solid rgba(23,68,79,.15);border-radius:999px;padding:.2em .8em;white-space:nowrap}
+.nav .cta-mini{
+  margin-left:auto;background:var(--encre);color:#fff;text-decoration:none;
+  font-weight:700;font-size:.9rem;padding:.55em 1.2em;border-radius:999px;
+  transition:transform .15s ease, background .15s ease;
+}
+.nav .cta-mini:hover{background:var(--lagune);transform:translateY(-1px)}
+@media(max-width:640px){.nav .etat{display:none}}
+
+/* ─── hero ─── */
+.hero{padding:4.2rem 0 3.4rem;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:center}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:2.6rem}}
+.hero h1{font-size:clamp(2.1rem,5.4vw,3.4rem);letter-spacing:-.01em}
+.hero h1 .tend{color:var(--lagune)}
+.hero p.lead{margin:1.3rem 0 1.9rem;font-size:1.13rem;max-width:34em}
+.actions{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-weight:700;
+  padding:.85em 1.7em;border-radius:999px;font-size:1.02rem;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-plein{background:var(--encre);color:#fff}
+.btn-plein:hover{background:var(--lagune);transform:translateY(-2px);box-shadow:0 8px 22px rgba(23,68,79,.18)}
+.btn-ligne{border:2px solid var(--encre);color:var(--encre)}
+.btn-ligne:hover{background:var(--creme);transform:translateY(-2px)}
+.scene{position:relative}
+.scene svg{width:100%;height:auto}
+/* animation d'entrée douce */
+@keyframes lever{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero h1{animation:lever .7s ease both}
+.hero .lead{animation:lever .7s .12s ease both}
+.hero .actions{animation:lever .7s .22s ease both}
+.hero .scene{animation:lever .8s .18s ease both}
+/* blobs décoratifs façon bannière */
+.blob{position:absolute;border-radius:50%;background:var(--turquoise);opacity:.35;pointer-events:none}
+.b1{width:130px;height:130px;top:-40px;right:-30px}
+.b2{width:70px;height:70px;bottom:30px;left:-25px}
+
+/* ─── sections ─── */
+section{padding:3.6rem 0}
+.philo{background:var(--encre);color:var(--creme)}
+.philo .eyebrow{color:var(--turquoise);background:rgba(143,205,211,.14)}
+.philo h2{font-size:clamp(1.7rem,3.6vw,2.4rem);color:#fff;max-width:16em}
+.philo p{max-width:42em;margin-top:1.1rem;color:rgba(251,247,242,.92)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.chips span{
+  border:1.5px solid rgba(251,247,242,.4);border-radius:999px;
+  padding:.35em 1.05em;font-size:.92rem;font-weight:700;
+}
+
+.suite h2{font-size:clamp(1.7rem,3.6vw,2.4rem);max-width:18em}
+.cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:2rem}
+.carte{
+  background:var(--creme);border-radius:var(--rayon);padding:1.6rem 1.4rem;
+  border:1px solid rgba(23,68,79,.07);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.carte:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(23,68,79,.1)}
+.carte svg{width:44px;height:44px;margin-bottom:.9rem}
+.carte h3{font-size:1.12rem;margin-bottom:.45rem}
+.carte p{font-size:.98rem}
+
+/* ─── liste d'attente ─── */
+.attente{background:linear-gradient(180deg,var(--beige) 0%,#EAF3F4 100%)}
+.attente .cadre{
+  background:var(--creme);border-radius:var(--rayon);
+  border:1px solid rgba(23,68,79,.08);
+  padding:2.2rem 1.6rem;max-width:760px;margin:2rem auto 0;
+  box-shadow:0 14px 40px rgba(23,68,79,.08);
+}
+.attente h2{font-size:clamp(1.7rem,3.6vw,2.4rem);text-align:center}
+.attente .promesse{text-align:center;max-width:36em;margin:1rem auto 0}
+.attente iframe{width:100%;height:920px;border:0;border-radius:12px;background:#fff}
+.attente .indispo{
+  text-align:center;padding:2.4rem 1rem;border:2px dashed rgba(23,68,79,.2);
+  border-radius:12px;color:rgba(23,68,79,.7);
+}
+.attente .secours{text-align:center;margin-top:1rem}
+.rgpd{font-size:.85rem;color:rgba(23,68,79,.65);text-align:center;margin-top:1.1rem;max-width:38em;margin-left:auto;margin-right:auto}
+
+/* ─── footer ─── */
+footer{background:var(--encre);color:rgba(251,247,242,.85);padding:2.6rem 0 2rem;font-size:.95rem}
+footer .haut{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem}
+footer img{width:52px;height:52px;border-radius:50%}
+footer .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem;color:#fff}
+footer a{color:var(--turquoise);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.reseaux{display:flex;gap:1.2rem;flex-wrap:wrap;margin:.8rem 0 1.2rem}
+footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;line-height:1.6}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header>
+  <div class="wrap nav">
+    <img src="logo.png" alt="Logo Nova-Organise : un cercle de personnes qui se tendent les mains">
+    <span class="marque">Nova-Organise</span>
+    <span class="etat">🪜 projet en construction</span>
+    <a href="ressources.html" style="font-size:.9rem;font-weight:700;color:#17444F;text-decoration:none;padding:.3em .7em;border-radius:8px;">Ressources</a><a class="cta-mini" href="#liste-attente">Liste d'attente</a>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="blob b1"></div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Application &amp; accompagnement en construction</span>
+        <h1>Ici, on ne vous demande pas de sauter plus haut.<br><span class="tend">On vous tend un escabeau.</span></h1>
+        <p class="lead">Nova-Organise est une application d'organisation pensée pour s'adapter à chaque personne — TDAH, TSA, dys, TDC… ou simplement un quotidien qui déborde. L'outil s'adapte à vous. Jamais l'inverse.</p>
+        <div class="actions">
+          <a class="btn btn-plein" href="#liste-attente">Rejoindre la liste d'attente</a>
+          <a class="btn btn-ligne" href="#philosophie">Découvrir le projet</a>
+        </div>
+      </div>
+      <div class="scene">
+        <div class="blob b2"></div>
+        <!-- scène : le mur, l'escabeau, le soleil -->
+        <svg viewBox="0 0 420 340" role="img" aria-label="Illustration : un escabeau posé contre un mur, devant un soleil qui se lève">
+          <defs>
+            <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FBF7F2"/><stop offset="1" stop-color="#EAF3F4"/>
+            </linearGradient>
+            <linearGradient id="soleil" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8FCDD3"/><stop offset="1" stop-color="#4F9DAD"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="400" height="320" rx="26" fill="url(#ciel)"/>
+          <!-- soleil à l'horizon -->
+          <circle cx="290" cy="230" r="62" fill="url(#soleil)" opacity=".9"/>
+          <!-- colline -->
+          <ellipse cx="210" cy="330" rx="260" ry="90" fill="#E4D8C8"/>
+          <!-- mur -->
+          <rect x="222" y="128" width="150" height="152" rx="14" fill="#F3EBE1" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="222" y1="176" x2="372" y2="176" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="222" y1="226" x2="372" y2="226" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="290" y1="128" x2="290" y2="176" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="252" y1="176" x2="252" y2="226" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="322" y1="176" x2="322" y2="226" stroke="#D9CBB8" stroke-width="2"/>
+          <line x1="290" y1="226" x2="290" y2="280" stroke="#D9CBB8" stroke-width="2"/>
+          <!-- escabeau -->
+          <g stroke="#17444F" stroke-width="7" stroke-linecap="round">
+            <line x1="150" y1="120" x2="108" y2="280"/>
+            <line x1="196" y1="120" x2="238" y2="280"/>
+          </g>
+          <g stroke="#DF9468" stroke-width="6" stroke-linecap="round">
+            <line x1="138" y1="162" x2="200" y2="162"/>
+            <line x1="130" y1="200" x2="210" y2="200"/>
+            <line x1="122" y1="238" x2="220" y2="238"/>
+          </g>
+          <!-- petites bulles -->
+          <circle cx="70" cy="70" r="12" fill="#8FCDD3" opacity=".55"/>
+          <circle cx="102" cy="46" r="6" fill="#4F9DAD" opacity=".45"/>
+          <circle cx="352" cy="66" r="9" fill="#DF9468" opacity=".4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHILOSOPHIE ═══ -->
+  <section class="philo" id="philosophie">
+    <div class="wrap">
+      <span class="eyebrow">La philosophie</span>
+      <h2>L'équité, ce n'est pas donner la même chose à tout le monde.</h2>
+      <p>C'est donner à chacun ce dont il a besoin pour franchir le mur. Les outils d'organisation classiques supposent une mémoire fiable, une perception du temps intuitive, une lecture fluide. Nova-Organise fait l'inverse : l'interface s'ajuste — pictogrammes, contrastes, taille du texte, quantité d'informations — pour que chaque personne trouve <em>son</em> escabeau.</p>
+      <p>Le projet s'adresse à tous ceux qui vivent ou accompagnent un trouble du neurodéveloppement :</p>
+      <div class="chips">
+        <span>Personnes concernées</span>
+        <span>Proches aidants</span>
+        <span>Professionnels de santé</span>
+        <span>Enseignants</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CE QUI ARRIVE ═══ -->
+  <section class="suite">
+    <div class="wrap">
+      <span class="eyebrow">En construction</span>
+      <h2>Ce qui se prépare dans l'application</h2>
+      <div class="cartes">
+        <div class="carte">
+          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="6" y="4" width="32" height="36" rx="8" stroke="#4F9DAD" stroke-width="3"/><path d="M14 16l4 4 7-8" stroke="#DF9468" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="14" y1="28" x2="30" y2="28" stroke="#17444F" stroke-width="3" stroke-linecap="round"/><line x1="14" y1="34" x2="24" y2="34" stroke="#17444F" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Routines visuelles</h3>
+          <p>Des routines en étapes illustrées — pictogrammes ou photos — à cocher à son rythme, du lever au coucher.</p>
+        </div>
+        <div class="carte">
+          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="24" r="16" stroke="#4F9DAD" stroke-width="3"/><path d="M22 24 L22 8 A16 16 0 0 1 36 16 Z" fill="#DF9468" opacity=".85"/><line x1="18" y1="4" x2="26" y2="4" stroke="#17444F" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Minuteur visuel</h3>
+          <p>Le temps qu'on <strong>voit</strong> s'écouler — une portion qui diminue, sans compte à rebours anxiogène.</p>
+        </div>
+        <div class="carte">
+          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M22 6c-6 0-10 4-10 10v7l-4 6h28l-4-6v-7c0-6-4-10-10-10Z" stroke="#4F9DAD" stroke-width="3" stroke-linejoin="round"/><path d="M18 33a4 4 0 0 0 8 0" stroke="#DF9468" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Notifications partagées</h3>
+          <p>Les proches suivent et encouragent — « routine du soir terminée ✔ » — sans jamais surveiller.</p>
+        </div>
+        <div class="carte">
+          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="5" y="8" width="34" height="32" rx="7" stroke="#4F9DAD" stroke-width="3"/><line x1="5" y1="18" x2="39" y2="18" stroke="#4F9DAD" stroke-width="3"/><line x1="14" y1="4" x2="14" y2="12" stroke="#17444F" stroke-width="3" stroke-linecap="round"/><line x1="30" y1="4" x2="30" y2="12" stroke="#17444F" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="27" r="3" fill="#DF9468"/><circle cx="28" cy="33" r="3" fill="#8FCDD3"/></svg>
+          <h3>Calendrier des échéances</h3>
+          <p>MDPH, GEVASCO, rendez-vous : les dates importantes anticipées, avec des rappels en avance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LISTE D'ATTENTE ═══ -->
+  <section class="attente" id="liste-attente">
+    <div class="wrap">
+      <h2>Soyez prévenu·e en premier 🪜</h2>
+      <p class="promesse">Inscrivez-vous en 30 secondes : vous serez informé·e du lancement avant tout le monde — et vous aurez une place réservée pour tenter de gagner un <strong>abonnement premium offert</strong>. 🎁</p>
+      <div class="cadre">
+        <div id="zone-formulaire">
+          <div class="indispo">Le formulaire arrive tout de suite…<br>S'il ne s'affiche pas, utilisez le bouton ci-dessous. 👇</div>
+        </div>
+        <p class="secours"><a class="btn btn-ligne" id="lien-secours" href="#" target="_blank" rel="noopener">Ouvrir le formulaire dans un nouvel onglet</a></p>
+        <p class="rgpd">Vos coordonnées servent uniquement à vous tenir informé·e du projet Nova-Organise. Elles ne sont ni vendues ni transmises. Suppression sur simple demande : contact.lesprojets@gmail.com</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="haut">
+      <img src="logo.png" alt="">
+      <div>
+        <div class="marque">Nova-Organise</div>
+        <div>Un projet en construction — entraide · solidarité · équité 🪜</div>
+      </div>
+    </div>
+    <nav class="reseaux" aria-label="Réseaux sociaux">
+      <a id="lien-facebook" href="#">Facebook</a>
+      <a id="lien-instagram" href="#">Instagram</a>
+      <a id="lien-tiktok" href="#">TikTok</a>
+      <a href="mailto:contact.lesprojets@gmail.com">contact.lesprojets@gmail.com</a>
+    </nav>
+    <div class="legal">
+      © 2026 Nova-Organise — Tous droits réservés.<br>
+      Mentions légales et politique de confidentialité complètes : à venir avec la création de la structure.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Branche les liens définis en haut du fichier */
+document.addEventListener('DOMContentLoaded', function () {
+  // Formulaire intégré
+  var zone = document.getElementById('zone-formulaire');
+  var secours = document.getElementById('lien-secours');
+  if (LIENS.formulaire) {
+    var src = LIENS.formulaire;
+    if (src.indexOf('docs.google.com/forms') !== -1 && src.indexOf('embedded=true') === -1) {
+      src += (src.indexOf('?') === -1 ? '?' : '&') + 'embedded=true';
+    }
+    var f = document.createElement('iframe');
+    f.src = src;
+    f.title = "Formulaire d'inscription à la liste d'attente Nova-Organise";
+    f.loading = 'lazy';
+    zone.innerHTML = '';
+    zone.appendChild(f);
+    secours.href = LIENS.formulaire;
+  } else {
+    zone.querySelector('.indispo').innerHTML = 'Le formulaire ouvre très bientôt.<br>En attendant, écrivez-nous : contact.lesprojets@gmail.com 💛';
+    secours.style.display = 'none';
+  }
+  // Réseaux sociaux
+  [['facebook','lien-facebook'],['instagram','lien-instagram'],['tiktok','lien-tiktok']].forEach(function (p) {
+    var a = document.getElementById(p[1]);
+    if (LIENS[p[0]]) { a.href = LIENS[p[0]]; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.style.display = 'none'; }
+  });
+});
+</script>
+</body>
+</html>
