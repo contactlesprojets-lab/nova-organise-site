@@ -57,7 +57,7 @@
      ══════════════════════════════════════════════════ -->
 <script>
 const LIENS = {
-  formulaire: "https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform?usp=header",   /* Google Forms liste d'attente */
+  formulaire: "https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform",   /* Google Forms liste d'attente */
   facebook:   "https://www.facebook.com/nova.organise/",   /* page Facebook */
   instagram:  "https://www.instagram.com/novaorganise/",   /* profil Instagram */
   tiktok:     "https://www.tiktok.com/@novaorganise"    /* compte TikTok */
@@ -325,9 +325,15 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
       <p class="promesse">Inscrivez-vous en 30 secondes : vous serez informé·e du lancement avant tout le monde — et vous aurez une place réservée pour tenter de gagner un <strong>abonnement premium offert</strong>. 🎁</p>
       <div class="cadre">
         <div id="zone-formulaire">
-          <div class="indispo">Le formulaire arrive tout de suite…<br>S'il ne s'affiche pas, utilisez le bouton ci-dessous. 👇</div>
+          <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform?embedded=true"
+            title="Formulaire d'inscription à la liste d'attente Nova-Organise"
+            loading="lazy"
+            style="width:100%;height:920px;border:0;border-radius:12px;background:#fff;">
+            Chargement…
+          </iframe>
         </div>
-        <p class="secours"><a class="btn btn-ligne" id="lien-secours" href="#" target="_blank" rel="noopener">Ouvrir le formulaire dans un nouvel onglet</a></p>
+        <p class="secours"><a class="btn btn-plein" href="https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform" target="_blank" rel="noopener" style="background:#DF9468;font-size:1.1rem;padding:1em 2em;">📝 Remplir le formulaire d'inscription</a></p>
         <p class="rgpd">Vos coordonnées servent uniquement à vous tenir informé·e du projet Nova-Organise. Elles ne sont ni vendues ni transmises. Suppression sur simple demande : contact.lesprojets@gmail.com</p>
       </div>
     </div>
