@@ -53,10 +53,11 @@ const POSTS = [
   {
     id: 2,
     serie: "TON PARCOURS",
-    titre: "Les 3 erreurs qui font refuser un dossier MDPH",
-    date: "10 juillet 2026",
-    texte: "Certificat incomplet, projet de vie vide, diagnostic sans retentissement : les erreurs évitables les plus fréquentes.",
+    titre: "Projet de vie MDPH : exemple et modèle pour bien le rédiger",
+    date: "8 juillet 2026",
+    texte: "La seule case du dossier où vous vous exprimez en votre nom. Méthode en 4 blocs + exemple concret pour ne plus la laisser vide.",
     image: null,
+    lienArticle: "ressources/projet-de-vie-mdph.html",
     liens: { fb: null, ig: null, tt: null }
   },
   /* ── EN CLASSE ─────────────────────────────────────── */
@@ -361,7 +362,9 @@ function creerCarte(post) {
     + '<div class="carte-img">' + imgHtml + '</div>'
     + '<div class="carte-corps">'
     +   '<span class="serie-badge" style="' + badgeStyle + '">' + emoji + ' ' + post.serie + '</span>'
-    +   '<h3>' + post.titre + '</h3>'
+    +   (post.lienArticle
+          ? '<h3><a href="' + post.lienArticle + '" style="color:inherit;text-decoration:none">' + post.titre + ' →</a></h3>'
+          : '<h3>' + post.titre + '</h3>')
     +   '<p class="carte-texte">' + post.texte + '</p>'
     +   '<div class="carte-meta">'
     +     '<span class="carte-date">📅 ' + post.date + '</span>'
