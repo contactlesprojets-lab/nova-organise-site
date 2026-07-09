@@ -32,6 +32,15 @@
     liens.ig  → URL du post Instagram (ou null)
     liens.tt  → URL du post TikTok (ou null)
 
+  Champ optionnel :
+    lien      → rend toute la carte cliquable. Deux formes possibles :
+                • chemin interne du site, ex. "ressources/mon-article.html"
+                  (s'ouvre dans le même onglet)
+                • URL externe complète, ex. "https://www.instagram.com/p/..."
+                  (s'ouvre dans un nouvel onglet)
+                Absent → un badge "Bientôt disponible" s'affiche à la place,
+                sans rendre la carte cliquable.
+
   Plus tard : remplacer POSTS par un fetch() vers l'API Airtable
   (voir commentaire TODO en bas du fichier JavaScript)
   ═══════════════════════════════════════════════════════════
@@ -57,7 +66,7 @@ const POSTS = [
     date: "8 juillet 2026",
     texte: "La seule case du dossier où vous vous exprimez en votre nom. Méthode en 4 blocs + exemple concret pour ne plus la laisser vide.",
     image: null,
-    lienArticle: "ressources/projet-de-vie-mdph.html",
+    lien: "ressources/projet-de-vie-mdph.html",
     liens: { fb: null, ig: null, tt: null }
   },
   /* ── EN CLASSE ─────────────────────────────────────── */
@@ -88,7 +97,8 @@ const POSTS = [
     date: "7 juillet 2026",
     texte: "Tableau de bord, profils familiaux, minuteur visuel : un premier aperçu de ce qui se construit derrière nova-organise.fr.",
     image: null,
-    liens: { fb: null, ig: null, tt: null }
+    lien: "https://www.instagram.com/novaorganise/reel/Dais_Q8I-gn/",
+    liens: { fb: null, ig: "https://www.instagram.com/novaorganise/reel/Dais_Q8I-gn/", tt: null }
   }
 ];
 
@@ -162,10 +172,29 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop
   border:1px solid rgba(23,68,79,.07);
   box-shadow:0 2px 12px rgba(23,68,79,.05);
   display:flex;flex-direction:column;
+  position:relative;
   transition:transform .18s ease, box-shadow .18s ease;
   overflow:hidden;
 }
-.carte:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(23,68,79,.1)}
+.carte-cliquable{cursor:pointer}
+.carte-cliquable:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(23,68,79,.1)}
+
+/* lien principal : couvre toute la carte (sans imbriquer de <a>),
+   tout en laissant les icônes réseaux sociaux cliquables au-dessus.
+   Important : le lien lui-même ne doit PAS être en position:relative,
+   sinon son ::after se limiterait à la taille du titre au lieu de
+   s'étirer jusqu'aux bords de .carte (qui est le parent positionné). */
+.carte-lien-principal{color:inherit;text-decoration:none}
+.carte-lien-principal::after{content:"";position:absolute;inset:0;z-index:1}
+.carte-liens{position:relative;z-index:2}
+
+/* badge « pas encore de lien » */
+.badge-bientot{
+  display:inline-flex;align-items:center;gap:.3em;
+  font-size:.74rem;font-weight:700;color:rgba(23,68,79,.55);
+  background:rgba(23,68,79,.06);padding:.25em .7em;border-radius:999px;
+  align-self:flex-start;
+}
 
 /* image de la carte */
 .carte-img{
@@ -336,6 +365,12 @@ function majCompteurs() {
   });
 }
 
+/* Un lien commençant par http(s):// est externe ; sinon c'est un chemin
+   interne au site (ex. "ressources/mon-article.html"). */
+function estLienExterne(url) {
+  return /^https?:\/\//i.test(url);
+}
+
 /* Créer une carte HTML pour un post */
 function creerCarte(post) {
   var serie = SERIES[post.serie] || {};
@@ -348,27 +383,37 @@ function creerCarte(post) {
     : '<span class="placeholder">' + emoji + '</span>';
 
   /* Liens réseaux */
-  function lien(url, icon, label) {
+  function lienReseau(url, icon, label) {
     if (!url) {
       return '<a href="#" data-disabled aria-label="' + label + ' (bientôt disponible)">' + icon + '</a>';
     }
     return '<a href="' + url + '" target="_blank" rel="noopener" aria-label="' + label + '">' + icon + '</a>';
   }
-  var liens = lien(post.liens.fb, "f", "Voir sur Facebook")
-            + lien(post.liens.ig, "📷", "Voir sur Instagram")
-            + lien(post.liens.tt, "♪", "Voir sur TikTok");
+  var liensReseaux = lienReseau(post.liens.fb, "f", "Voir sur Facebook")
+            + lienReseau(post.liens.ig, "📷", "Voir sur Instagram")
+            + lienReseau(post.liens.tt, "♪", "Voir sur TikTok");
 
-  return '<article class="carte" role="listitem">'
+  /* Lien principal : rend toute la carte cliquable quand il est présent.
+     Interne → même onglet. Externe (http/https) → nouvel onglet. */
+  var aLien = !!post.lien;
+  var externe = aLien && estLienExterne(post.lien);
+  var titreHtml = aLien
+    ? '<h3><a class="carte-lien-principal" href="' + post.lien + '"'
+        + (externe ? ' target="_blank" rel="noopener"' : '')
+        + '>' + post.titre + ' →</a></h3>'
+    : '<h3>' + post.titre + '</h3>';
+  var badgeBientot = aLien ? '' : '<span class="badge-bientot">🔜 Bientôt disponible</span>';
+
+  return '<article class="carte' + (aLien ? ' carte-cliquable' : '') + '" role="listitem">'
     + '<div class="carte-img">' + imgHtml + '</div>'
     + '<div class="carte-corps">'
     +   '<span class="serie-badge" style="' + badgeStyle + '">' + emoji + ' ' + post.serie + '</span>'
-    +   (post.lienArticle
-          ? '<h3><a href="' + post.lienArticle + '" style="color:inherit;text-decoration:none">' + post.titre + ' →</a></h3>'
-          : '<h3>' + post.titre + '</h3>')
+    +   titreHtml
+    +   badgeBientot
     +   '<p class="carte-texte">' + post.texte + '</p>'
     +   '<div class="carte-meta">'
     +     '<span class="carte-date">📅 ' + post.date + '</span>'
-    +     '<div class="carte-liens">' + liens + '</div>'
+    +     '<div class="carte-liens">' + liensReseaux + '</div>'
     +   '</div>'
     + '</div>'
     + '</article>';
