@@ -17,4 +17,52 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Article — Droits et démarches  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/droits-et-demarches</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — AEEH  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/aeeh</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — AAH  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/aah</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — Scolarisation  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/scolarisation</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — Emploi  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/emploi</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — PCH et aidants  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/pch-et-aidants</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — Cartes et transport  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/cartes-et-transport</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Article — Ressources TND  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/ressources-tnd</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>

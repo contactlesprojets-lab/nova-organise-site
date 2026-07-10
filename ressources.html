@@ -47,7 +47,7 @@
 -->
 
 <script>
-const POSTS = [
+let POSTS = [
   /* ── COMPRENDRE ───────────────────────────────────── */
   {
     id: 1,
@@ -461,57 +461,54 @@ function initOnglets() {
   });
 }
 
-/* Init */
+/* Init : affichage immédiat des publications déjà connues (rien à
+   attendre), puis complément avec les astuces Airtable une fois arrivées. */
 majCompteurs();
 afficher("TOUS");
 initOnglets();
 
-/*
-  ══════════════════════════════════════════════════
-  TODO : Connexion Airtable (Phase 2)
-  ══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
+   Connexion Airtable — table Astuces
+   ══════════════════════════════════════════════════
+   Le jeton Airtable ne quitte jamais le serveur : cette page appelle
+   /api/ressources (fonction Vercel) qui lit Airtable côté serveur et
+   renvoie du JSON déjà prêt à afficher. Chaque astuce est déjà classée
+   dans l'une des 5 catégories du site par la fonction serveur.
+   En cas d'échec (API indisponible, hors ligne), les publications déjà
+   affichées restent visibles : rien ne casse. */
+async function chargerAstucesAirtable() {
+  const reponse = await fetch("/api/ressources");
+  if (!reponse.ok) throw new Error("Impossible de charger /api/ressources");
+  const data = await reponse.json();
+  return (data.astuces || []).map(function (a) {
+    /* Les URLs Airtable sont absolues (nova-organise.fr/ressources/...) ;
+       on les rend relatives pour que la carte s'ouvre dans le même onglet
+       (comportement "lien interne", comme les autres publications). */
+    var lienRelatif = a.lien
+      ? a.lien.replace(/^https?:\/\/(www\.)?nova-organise\.fr\//, "")
+      : null;
+    return {
+      id: "astuce-" + a.id,
+      serie: a.serie,
+      titre: a.titre,
+      date: a.datePublication,
+      texte: a.contenu,
+      image: null,
+      lien: lienRelatif,
+      liens: { fb: null, ig: null, tt: null }
+    };
+  });
+}
 
-  Quand la base Airtable "Bibliothèque de contenus" sera prête,
-  remplacer le bloc POSTS statique en haut du fichier par :
-
-  async function chargerPostsAirtable() {
-    const BASE_ID   = "appXXXXXXXXXXXXXX"; // ton ID de base
-    const TABLE_ID  = "tblXXXXXXXXXXXXXX"; // ID de la table
-    const API_KEY   = "patXXXXXXX.XXXXX";  // token Airtable read-only
-    const url = "https://api.airtable.com/v0/" + BASE_ID + "/" + TABLE_ID
-              + "?fields[]=Titre&fields[]=Série&fields[]=Date"
-              + "&fields[]=Texte&fields[]=Image&fields[]=Lien_FB"
-              + "&fields[]=Lien_IG&fields[]=Lien_TT&fields[]=Visible"
-              + "&filterByFormula={Visible}=TRUE()&sort[0][field]=Date"
-              + "&sort[0][direction]=desc";
-    const resp = await fetch(url, {
-      headers: { Authorization: "Bearer " + API_KEY }
-    });
-    const data = await resp.json();
-    return data.records.map(r => ({
-      id: r.id,
-      serie: r.fields["Série"],
-      titre: r.fields["Titre"],
-      date: r.fields["Date"],
-      texte: r.fields["Texte"],
-      image: r.fields["Image"] ? r.fields["Image"][0].url : null,
-      liens: {
-        fb: r.fields["Lien_FB"] || null,
-        ig: r.fields["Lien_IG"] || null,
-        tt: r.fields["Lien_TT"] || null
-      }
-    }));
-  }
-
-  Puis appeler :
-    chargerPostsAirtable().then(posts => {
-      window.POSTS = posts;
-      majCompteurs();
-      afficher("TOUS");
-      initOnglets();
-    });
-  ══════════════════════════════════════════════════
-*/
+chargerAstucesAirtable()
+  .then(function (astuces) {
+    POSTS = POSTS.concat(astuces);
+    majCompteurs();
+    afficher(serieActuelle);
+  })
+  .catch(function (erreur) {
+    console.error("Astuces Airtable non chargées :", erreur.message);
+  });
 </script>
 </body>
 </html>
