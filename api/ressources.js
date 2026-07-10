@@ -31,20 +31,6 @@ export default async function handler(req, res) {
   const token = nettoyer(process.env.AIRTABLE_TOKEN)
   const baseId = nettoyer(process.env.AIRTABLE_BASE_ID)
 
-  // Diagnostic temporaire — ne révèle jamais les valeurs, seulement leur
-  // présence/longueur. À retirer une fois le problème de configuration
-  // Vercel identifié.
-  if (req.query && req.query.diag === '1') {
-    res.status(200).json({
-      AIRTABLE_TOKEN_present: Boolean(process.env.AIRTABLE_TOKEN),
-      AIRTABLE_TOKEN_longueur: (process.env.AIRTABLE_TOKEN || '').length,
-      AIRTABLE_BASE_ID_present: Boolean(process.env.AIRTABLE_BASE_ID),
-      AIRTABLE_BASE_ID_longueur: (process.env.AIRTABLE_BASE_ID || '').length,
-      toutes_les_cles_AIRTABLE: Object.keys(process.env).filter((k) => k.includes('AIRTABLE')),
-    })
-    return
-  }
-
   if (!token || !baseId) {
     res.status(503).json({ erreur: 'Airtable non configuré' })
     return
