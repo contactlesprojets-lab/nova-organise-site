@@ -77,4 +77,10 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Article — Aménagements classe TDAH  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/amenagements-classe-tdah</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>
