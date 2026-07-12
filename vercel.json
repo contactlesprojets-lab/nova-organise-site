@@ -14,6 +14,7 @@
     { "source": "/ressources/projet-de-vie-mdph", "destination": "/ressources/projet-de-vie-mdph.html" },
     { "source": "/ressources/glossaire-mdph", "destination": "/ressources/glossaire-mdph.html" },
     { "source": "/ressources/amenagements-classe-tdah", "destination": "/ressources/amenagements-classe-tdah.html" },
-    { "source": "/ressources/equite-egalite", "destination": "/ressources/equite-egalite.html" }
+    { "source": "/ressources/equite-egalite", "destination": "/ressources/equite-egalite.html" },
+    { "source": "/ressources/tdah-tsa-dys-tdc", "destination": "/ressources/tdah-tsa-dys-tdc.html" }
   ]
 }

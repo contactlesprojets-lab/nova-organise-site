@@ -89,4 +89,10 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Article — TDAH, TSA, dys, TDC  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/tdah-tsa-dys-tdc</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>
