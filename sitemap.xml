@@ -107,4 +107,10 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Article — Coulisses annuaire  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/coulisses-annuaire</loc>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
 </urlset>

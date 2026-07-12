@@ -17,6 +17,7 @@
     { "source": "/ressources/equite-egalite", "destination": "/ressources/equite-egalite.html" },
     { "source": "/ressources/tdah-tsa-dys-tdc", "destination": "/ressources/tdah-tsa-dys-tdc.html" },
     { "source": "/ressources/renouvellement-mdph", "destination": "/ressources/renouvellement-mdph.html" },
-    { "source": "/ressources/charge-mentale-parents-tnd", "destination": "/ressources/charge-mentale-parents-tnd.html" }
+    { "source": "/ressources/charge-mentale-parents-tnd", "destination": "/ressources/charge-mentale-parents-tnd.html" },
+    { "source": "/ressources/coulisses-annuaire", "destination": "/ressources/coulisses-annuaire.html" }
   ]
 }
