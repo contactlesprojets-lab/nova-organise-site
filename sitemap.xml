@@ -101,4 +101,10 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Article — Charge mentale des parents TND  -->
+<url>
+<loc>https://www.nova-organise.fr/ressources/charge-mentale-parents-tnd</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>
