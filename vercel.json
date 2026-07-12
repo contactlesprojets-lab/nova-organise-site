@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/ressources/projet-de-vie-mdph.html", "destination": "/ressources/projet-de-vie-mdph", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/ressources/droits-et-demarches", "destination": "/ressources/droits-et-demarches.html" },
     { "source": "/ressources/aeeh", "destination": "/ressources/aeeh.html" },
@@ -7,6 +10,7 @@
     { "source": "/ressources/emploi", "destination": "/ressources/emploi.html" },
     { "source": "/ressources/pch-et-aidants", "destination": "/ressources/pch-et-aidants.html" },
     { "source": "/ressources/cartes-et-transport", "destination": "/ressources/cartes-et-transport.html" },
-    { "source": "/ressources/ressources-tnd", "destination": "/ressources/ressources-tnd.html" }
+    { "source": "/ressources/ressources-tnd", "destination": "/ressources/ressources-tnd.html" },
+    { "source": "/ressources/projet-de-vie-mdph", "destination": "/ressources/projet-de-vie-mdph.html" }
   ]
 }
