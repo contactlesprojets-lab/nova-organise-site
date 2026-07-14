@@ -107,6 +107,7 @@ header{
   border-bottom:1px solid rgba(23,68,79,.08);
 }
 .nav{display:flex;align-items:center;gap:.8rem;padding:.7rem 0}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit}
 .nav img{width:44px;height:44px;border-radius:50%}
 .nav .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem}
 .nav .etat{font-size:.72rem;background:var(--creme);border:1px solid rgba(23,68,79,.15);border-radius:999px;padding:.2em .8em;white-space:nowrap}
@@ -206,8 +207,10 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 
 <header>
   <div class="wrap nav">
-    <img src="logo.png" alt="Logo Nova-Organise : un cercle de personnes qui se tendent les mains">
-    <span class="marque">Nova-Organise</span>
+    <a class="nav-logo" href="index.html" aria-label="Nova-Organise — retour à l'accueil">
+      <img src="logo.png" alt="Logo Nova-Organise : un cercle de personnes qui se tendent les mains">
+      <span class="marque">Nova-Organise</span>
+    </a>
     <span class="etat">🪜 projet en construction</span>
     <a href="ressources.html" style="font-size:.9rem;font-weight:700;color:#17444F;text-decoration:none;padding:.3em .7em;border-radius:8px;">Ressources</a><a href="enseignants-aesh.html" style="font-size:.9rem;font-weight:700;color:#17444F;text-decoration:none;padding:.3em .7em;border-radius:8px;">Enseignants &amp; AESH</a><a class="cta-mini" href="#liste-attente">Liste d'attente</a>
   </div>
