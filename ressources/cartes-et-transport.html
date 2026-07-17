@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/cadenas.css">
 
 <script type="application/ld+json">
 {
@@ -65,6 +66,7 @@ a{color:var(--lagune)}
 
 header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,68,79,.08)}
 .nav{display:flex;align-items:center;gap:.8rem;padding:.7rem 22px;max-width:1060px;margin:0 auto;flex-wrap:wrap}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit}
 .nav img{width:40px;height:40px;border-radius:50%}
 .nav .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem}
 .nav-links{display:flex;gap:1.1rem;margin-left:auto;flex-wrap:wrap;align-items:center}
@@ -133,8 +135,10 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 
 <header>
   <div class="nav">
-    <img src="../logo.png" alt="Logo Nova-Organise">
-    <span class="marque">Nova-Organise</span>
+    <a class="nav-logo" href="../index.html" aria-label="Nova-Organise — retour à l'accueil">
+      <img src="../logo.png" alt="Logo Nova-Organise">
+      <span class="marque">Nova-Organise</span>
+    </a>
     <nav class="nav-links">
       <a href="../index.html">Accueil</a>
       <a href="../ressources.html">Ressources</a>
@@ -170,7 +174,31 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
         <p class="titre-enc">⚠️ Une échéance à ne pas manquer</p>
         <p>Les anciennes cartes (invalidité, priorité, stationnement) ne seront <strong>plus valables après le 31 décembre 2026</strong>. Si vous en possédez encore une, mieux vaut anticiper la démarche de remplacement.</p>
       </div>
+    </article>
 
+    <div class="cadenas" id="cadenas-verrou">
+      <p class="cadenas-icone" aria-hidden="true">🔒</p>
+      <h2>Envie d'aller plus loin ?</h2>
+      <p>La suite de l'article détaille la différence entre CMI invalidité et CMI priorité, avec les sources officielles. Entrez votre email pour débloquer le contenu complet.</p>
+      <form id="form-cadenas" novalidate>
+        <label for="cadenas-email">Votre email</label>
+        <input type="email" id="cadenas-email" name="email" required placeholder="vous@exemple.fr" autocomplete="email">
+        <p class="cadenas-erreur" id="cadenas-erreur-email" role="alert" hidden></p>
+
+        <label class="cadenas-check" for="cadenas-consentement">
+          <input type="checkbox" id="cadenas-consentement" required>
+          <span>J'autorise Nova-Organise à utiliser mon adresse email pour m'envoyer ce contenu et des actualités sur le projet. Désinscription possible à tout moment.</span>
+        </label>
+        <p class="cadenas-erreur" id="cadenas-erreur-consentement" role="alert" hidden></p>
+
+        <button type="submit" class="btn">Débloquer le contenu complet 🔓</button>
+        <p class="cadenas-rgpd">Vos coordonnées ne sont ni vendues ni transmises. Suppression sur simple demande : contact.lesprojets@gmail.com</p>
+      </form>
+      <p class="cadenas-merci" id="cadenas-merci" hidden>Merci ! Le contenu est débloqué juste en dessous 👇</p>
+    </div>
+
+    <article>
+      <div id="verrou-contenu" hidden>
       <h2><span class="num">02</span>CMI invalidité ou CMI priorité : quelle différence ?</h2>
       <p>La CMI <strong>« invalidité »</strong> (taux d'incapacité ≥ 80 %) ouvre des avantages fiscaux et des réductions de transport. La CMI <strong>« priorité »</strong> (taux &lt; 80 %, station debout pénible) donne priorité aux places assises et dans les files d'attente.</p>
 
@@ -181,6 +209,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
           <li><a href="https://www.cnsa.fr" target="_blank" rel="noopener">CNSA</a> — mentions et avantages de la CMI</li>
         </ul>
       </div>
+      </div><!-- /#verrou-contenu -->
     </article>
 
     <div class="cta-box">
@@ -218,5 +247,6 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
     </div>
   </div>
 </footer>
+<script src="../assets/cadenas.js"></script>
 </body>
 </html>

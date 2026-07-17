@@ -71,17 +71,7 @@
 }
 </script>
 
-<!-- ══════════════════════════════════════════════════════════════
-     🔒 Configuration du cadenas email (déjà branché sur le Google
-     Form "Nova-Organise – Déblocage ressources")
-     ══════════════════════════════════════════════════════════════ -->
-<script>
-const CADENAS_CONFIG = {
-  formAction: "https://docs.google.com/forms/d/e/1FAIpQLSfarwv0jFxzuBFfDdAESB1K5ZXRpJ42ZfKXEg2aBM6RbUEsow/formResponse",
-  champEmail: "entry.885195692",
-  champConsentement: "entry.495009272"
-};
-</script>
+<link rel="stylesheet" href="../assets/cadenas.css">
 
 <style>
 :root{
@@ -169,22 +159,6 @@ article strong{color:var(--encre)}
 
 .disclaimer{font-size:.85rem;color:rgba(23,68,79,.6);background:rgba(223,148,104,.08);border-radius:12px;padding:1rem 1.2rem;margin:2rem 0}
 
-/* ── Cadenas email ── */
-.cadenas{background:linear-gradient(160deg,#fff,var(--creme));border:1.5px solid rgba(79,157,173,.3);border-radius:var(--rayon);padding:2rem 1.8rem;margin:2.4rem 0;text-align:center;box-shadow:0 14px 34px rgba(23,68,79,.08)}
-.cadenas-icone{font-size:2.2rem;margin-bottom:.4rem}
-.cadenas h2{margin:0 0 .6rem;font-size:1.35rem}
-.cadenas>p{max-width:32em;margin:0 auto 1.4rem;color:rgba(23,68,79,.78)}
-.cadenas form{max-width:26em;margin:0 auto;text-align:left}
-.cadenas label{display:block;font-weight:700;font-size:.9rem;margin-bottom:.4rem}
-.cadenas input[type="email"]{width:100%;padding:.75em 1em;border:1.5px solid rgba(23,68,79,.2);border-radius:10px;font-family:inherit;font-size:1rem;background:#fff;color:var(--encre);margin-bottom:1rem}
-.cadenas input[type="email"]:focus{border-color:var(--lagune)}
-.cadenas-check{display:flex;gap:.7em;align-items:flex-start;font-weight:400;font-size:.88rem;cursor:pointer;margin-bottom:1.2rem}
-.cadenas-check input{margin-top:.25em;width:18px;height:18px;flex-shrink:0;accent-color:var(--lagune)}
-.cadenas-erreur{color:#B24A2E;font-size:.85rem;font-weight:700;margin:-.6rem 0 1rem}
-.cadenas button{width:100%;border:none;cursor:pointer;font-family:inherit}
-.cadenas-rgpd{font-size:.8rem;color:rgba(23,68,79,.55);text-align:center;margin-top:1rem;max-width:none}
-.cadenas-merci{font-weight:700;color:var(--lagune)}
-
 footer{background:var(--encre);color:rgba(251,247,242,.85);padding:2.6rem 0 2rem;font-size:.95rem;margin-top:3rem}
 footer .wrap{max-width:1060px}
 footer .haut{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem}
@@ -252,7 +226,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
       <p>Ces trois obstacles sont légitimes. La bonne nouvelle : il n'existe <strong>pas de bonne façon unique</strong> de l'écrire. Une structure simple suffit largement.</p>
     </article>
 
-    <div class="cadenas" id="cadenas-mdph">
+    <div class="cadenas" id="cadenas-verrou">
       <p class="cadenas-icone" aria-hidden="true">🔒</p>
       <h2>Envie d'aller plus loin ?</h2>
       <p>La suite de l'article contient la méthode complète en 4 blocs, un exemple concret détaillé, la checklist « à éviter » et les questions fréquentes. Entrez votre email pour débloquer le contenu complet.</p>
@@ -369,109 +343,6 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
   </div>
 </footer>
 
-<script>
-/* ══════════════════════════════════════════════════
-   Logique du cadenas email
-   ══════════════════════════════════════════════════ */
-(function () {
-  var CLE_STOCKAGE = 'novaOrganiseDebloque_projet-de-vie-mdph';
-  var cadenas = document.getElementById('cadenas-mdph');
-  var contenu = document.getElementById('verrou-contenu');
-  var form = document.getElementById('form-cadenas');
-  var merci = document.getElementById('cadenas-merci');
-  if (!cadenas || !contenu || !form) return;
-
-  function debloquer(sansAnimation) {
-    contenu.hidden = false;
-    form.hidden = true;
-    if (merci) merci.hidden = false;
-    if (!sansAnimation) {
-      contenu.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  /* Déjà débloqué lors d'une visite précédente sur cet appareil */
-  try {
-    if (localStorage.getItem(CLE_STOCKAGE) === 'oui') {
-      debloquer(true);
-    }
-  } catch (e) { /* localStorage indisponible (navigation privée...) : pas grave, le formulaire réapparaît */ }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var champEmail = document.getElementById('cadenas-email');
-    var champConsentement = document.getElementById('cadenas-consentement');
-    var erreurEmail = document.getElementById('cadenas-erreur-email');
-    var erreurConsentement = document.getElementById('cadenas-erreur-consentement');
-    var email = champEmail.value.trim();
-    var emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    erreurEmail.hidden = true;
-    erreurConsentement.hidden = true;
-
-    if (!emailValide) {
-      erreurEmail.textContent = 'Merci de renseigner une adresse email valide.';
-      erreurEmail.hidden = false;
-      champEmail.focus();
-      return;
-    }
-    if (!champConsentement.checked) {
-      erreurConsentement.textContent = 'Merci de cocher la case pour continuer.';
-      erreurConsentement.hidden = false;
-      champConsentement.focus();
-      return;
-    }
-
-    envoyerVersGoogleForm(email);
-
-    try { localStorage.setItem(CLE_STOCKAGE, 'oui'); } catch (e) {}
-
-    debloquer(false);
-  });
-
-  /* Envoi silencieux vers le Google Form configuré tout en haut du fichier
-     (CADENAS_CONFIG). Tant qu'il n'est pas rempli, cette fonction ne fait
-     rien — le contenu se débloque quand même, mais rien n'est envoyé. */
-  function envoyerVersGoogleForm(email) {
-    if (typeof CADENAS_CONFIG === 'undefined' || !CADENAS_CONFIG.formAction || !CADENAS_CONFIG.champEmail) {
-      return;
-    }
-    var nomIframe = 'cadenas-cible-mdph';
-    var iframe = document.querySelector('iframe[name="' + nomIframe + '"]');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.name = nomIframe;
-      iframe.style.display = 'none';
-      iframe.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(iframe);
-    }
-
-    var f = document.createElement('form');
-    f.action = CADENAS_CONFIG.formAction;
-    f.method = 'POST';
-    f.target = nomIframe;
-    f.style.display = 'none';
-
-    var champ1 = document.createElement('input');
-    champ1.type = 'hidden';
-    champ1.name = CADENAS_CONFIG.champEmail;
-    champ1.value = email;
-    f.appendChild(champ1);
-
-    if (CADENAS_CONFIG.champConsentement) {
-      var champ2 = document.createElement('input');
-      champ2.type = 'hidden';
-      champ2.name = CADENAS_CONFIG.champConsentement;
-      champ2.value = "Oui, j'autorise Nova-Organise à m'envoyer ce contenu et des actualités sur le projet.";
-      f.appendChild(champ2);
-    }
-
-    document.body.appendChild(f);
-    f.submit();
-    document.body.removeChild(f);
-  }
-})();
-</script>
+<script src="../assets/cadenas.js"></script>
 </body>
 </html>

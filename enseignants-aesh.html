@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cadenas.css">
 
 <style>
 :root{
@@ -155,10 +156,32 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
     <div class="wrap">
       <span class="eyebrow">Pour l'école</span>
       <h1>Ressources pour les enseignants et AESH 🎓</h1>
-      <p>Fiches pratiques par trouble, aide aux dispositifs (PPS, PAP, GEVA-Sco), outils de communication famille-école et pictogrammes à imprimer — toujours basés sur une source officielle ou reconnue (Éduscol, Canopé, INSHEA, HAS, Mon Parcours Handicap). Accessible librement, sans compte.</p>
+      <p>Fiches pratiques par trouble, aide aux dispositifs (PPS, PAP, GEVA-Sco), outils de communication famille-école et pictogrammes à imprimer — toujours basés sur une source officielle ou reconnue (Éduscol, Canopé, INSHEA, HAS, Mon Parcours Handicap). Un simple email suffit pour y accéder, sans compte à créer.</p>
     </div>
   </div>
 
+  <div class="wrap">
+    <div class="cadenas" id="cadenas-verrou">
+      <p class="cadenas-icone" aria-hidden="true">🔒</p>
+      <h2>Accédez à toutes les ressources</h2>
+      <p>Fiches pratiques par trouble, aide aux dispositifs, outils de communication et pictogrammes à imprimer : débloquez l'accès complet avec votre adresse email.</p>
+      <form id="form-cadenas" novalidate>
+        <label for="cadenas-email">Votre email</label>
+        <input type="email" id="cadenas-email" name="email" required placeholder="vous@exemple.fr" autocomplete="email">
+        <p class="cadenas-erreur" id="cadenas-erreur-email" role="alert" hidden></p>
+        <label class="cadenas-check" for="cadenas-consentement">
+          <input type="checkbox" id="cadenas-consentement" required>
+          <span>J'autorise Nova-Organise à utiliser mon adresse email pour m'envoyer ce contenu et des actualités sur le projet. Désinscription possible à tout moment.</span>
+        </label>
+        <p class="cadenas-erreur" id="cadenas-erreur-consentement" role="alert" hidden></p>
+        <button type="submit" class="btn-telecharger" style="width:100%;justify-content:center">Débloquer les ressources 🔓</button>
+        <p class="cadenas-rgpd">Vos coordonnées ne sont ni vendues ni transmises. Suppression sur simple demande : contact.lesprojets@gmail.com</p>
+      </form>
+      <p class="cadenas-merci" id="cadenas-merci" hidden>Merci ! Les ressources sont débloquées juste en dessous 👇</p>
+    </div>
+  </div>
+
+  <div id="verrou-contenu" hidden>
   <div class="filtres-wrap">
     <div class="wrap filtres">
       <div class="filtre-groupe">
@@ -195,6 +218,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
       </div>
     </div>
   </section>
+  </div><!-- /#verrou-contenu -->
 
 </main>
 
@@ -393,5 +417,6 @@ chargerRessourcesAirtable()
     console.error("Ressources enseignants Airtable non chargées :", erreur.message);
   });
 </script>
+<script src="assets/cadenas.js"></script>
 </body>
 </html>

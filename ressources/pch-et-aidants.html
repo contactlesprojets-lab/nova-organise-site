@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/cadenas.css">
 
 <script type="application/ld+json">
 {
@@ -65,6 +66,7 @@ a{color:var(--lagune)}
 
 header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,68,79,.08)}
 .nav{display:flex;align-items:center;gap:.8rem;padding:.7rem 22px;max-width:1060px;margin:0 auto;flex-wrap:wrap}
+.nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit}
 .nav img{width:40px;height:40px;border-radius:50%}
 .nav .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem}
 .nav-links{display:flex;gap:1.1rem;margin-left:auto;flex-wrap:wrap;align-items:center}
@@ -133,8 +135,10 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 
 <header>
   <div class="nav">
-    <img src="../logo.png" alt="Logo Nova-Organise">
-    <span class="marque">Nova-Organise</span>
+    <a class="nav-logo" href="../index.html" aria-label="Nova-Organise — retour à l'accueil">
+      <img src="../logo.png" alt="Logo Nova-Organise">
+      <span class="marque">Nova-Organise</span>
+    </a>
     <nav class="nav-links">
       <a href="../index.html">Accueil</a>
       <a href="../ressources.html">Ressources</a>
@@ -165,7 +169,28 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
     <article>
       <h2><span class="num">01</span>La PCH, plus accessible depuis 2023</h2>
       <p>La <strong>PCH</strong> (prestation de compensation du handicap) est depuis le 1er janvier 2023 plus accessible aux personnes avec des troubles psychiques, mentaux, cognitifs ou TND. L'aide humaine « soutien à l'autonomie » qu'elle finance peut atteindre <strong>3 heures par jour</strong>.</p>
+    </article>
 
+      <div class="cadenas" id="cadenas-verrou">
+        <p class="cadenas-icone" aria-hidden="true">🔒</p>
+        <h2>Envie d'aller plus loin ?</h2>
+        <p>Débloquez la suite de l'article : l'AJPA, cette indemnité méconnue pour les aidants qui réduisent ou cessent leur activité, avec les montants en vigueur.</p>
+        <form id="form-cadenas" novalidate>
+          <label for="cadenas-email">Votre email</label>
+          <input type="email" id="cadenas-email" name="email" required placeholder="vous@exemple.fr" autocomplete="email">
+          <p class="cadenas-erreur" id="cadenas-erreur-email" role="alert" hidden></p>
+          <label class="cadenas-check" for="cadenas-consentement">
+            <input type="checkbox" id="cadenas-consentement" required>
+            <span>J'autorise Nova-Organise à utiliser mon adresse email pour m'envoyer ce contenu et des actualités sur le projet. Désinscription possible à tout moment.</span>
+          </label>
+          <p class="cadenas-erreur" id="cadenas-erreur-consentement" role="alert" hidden></p>
+          <button type="submit" class="btn">Débloquer le contenu complet 🔓</button>
+          <p class="cadenas-rgpd">Vos coordonnées ne sont ni vendues ni transmises. Suppression sur simple demande : contact.lesprojets@gmail.com</p>
+        </form>
+        <p class="cadenas-merci" id="cadenas-merci" hidden>Merci ! Le contenu est débloqué juste en dessous 👇</p>
+      </div>
+      <article>
+      <div id="verrou-contenu" hidden>
       <h2><span class="num">02</span>L'AJPA, une indemnité pour l'aidant</h2>
       <p>L'<strong>AJPA</strong> (allocation journalière du proche aidant) indemnise l'aidant qui réduit ou cesse son activité professionnelle pour accompagner un proche. Depuis le 1er janvier 2026, elle est de <strong>66,64 € par journée complète</strong> et <strong>33,32 € par demi-journée</strong>, dans la limite de 66 jours par proche aidé.</p>
 
@@ -181,6 +206,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
           <li><a href="https://www.pour-les-personnes-agees.gouv.fr" target="_blank" rel="noopener">pour-les-personnes-agees.gouv.fr</a> — montants et conditions de l'AJPA</li>
         </ul>
       </div>
+      </div><!-- /#verrou-contenu -->
     </article>
 
     <div class="cta-box">
@@ -218,5 +244,6 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
     </div>
   </div>
 </footer>
+<script src="../assets/cadenas.js"></script>
 </body>
 </html>

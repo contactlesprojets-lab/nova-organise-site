@@ -1,0 +1,17 @@
+/* ══════════════════════════════════════════════════
+   Cadenas email — styles partagés (toutes les pages)
+   ══════════════════════════════════════════════════ */
+.cadenas{background:linear-gradient(160deg,#fff,var(--creme));border:1.5px solid rgba(79,157,173,.3);border-radius:var(--rayon);padding:2rem 1.8rem;margin:2.4rem 0;text-align:center;box-shadow:0 14px 34px rgba(23,68,79,.08)}
+.cadenas-icone{font-size:2.2rem;margin-bottom:.4rem}
+.cadenas h2{margin:0 0 .6rem;font-size:1.35rem}
+.cadenas>p{max-width:32em;margin:0 auto 1.4rem;color:rgba(23,68,79,.78)}
+.cadenas form{max-width:26em;margin:0 auto;text-align:left}
+.cadenas label{display:block;font-weight:700;font-size:.9rem;margin-bottom:.4rem}
+.cadenas input[type="email"]{width:100%;padding:.75em 1em;border:1.5px solid rgba(23,68,79,.2);border-radius:10px;font-family:inherit;font-size:1rem;background:#fff;color:var(--encre);margin-bottom:1rem}
+.cadenas input[type="email"]:focus{border-color:var(--lagune)}
+.cadenas-check{display:flex;gap:.7em;align-items:flex-start;font-weight:400;font-size:.88rem;cursor:pointer;margin-bottom:1.2rem}
+.cadenas-check input{margin-top:.25em;width:18px;height:18px;flex-shrink:0;accent-color:var(--lagune)}
+.cadenas-erreur{color:#B24A2E;font-size:.85rem;font-weight:700;margin:-.6rem 0 1rem}
+.cadenas button{width:100%;border:none;cursor:pointer;font-family:inherit}
+.cadenas-rgpd{font-size:.8rem;color:rgba(23,68,79,.55);text-align:center;margin-top:1rem;max-width:none}
+.cadenas-merci{font-weight:700;color:var(--lagune)}
