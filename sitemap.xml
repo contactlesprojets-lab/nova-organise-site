@@ -71,6 +71,12 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Page Fiches à imprimer — nouvelles fiches ajoutées régulièrement  -->
+<url>
+<loc>https://www.nova-organise.fr/telechargements.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
 <!--  Article — Glossaire MDPH  -->
 <url>
 <loc>https://www.nova-organise.fr/ressources/glossaire-mdph</loc>
