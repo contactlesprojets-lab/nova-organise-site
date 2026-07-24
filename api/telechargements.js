@@ -42,9 +42,9 @@ export default async function handler(req, res) {
     // qui garantit qu'elle reste vraiment invisible tant qu'Anne Laure n'a
     // pas coché la case dans Airtable.
     const fiches = records
-      .filter((r) => r.fields['Visible'] && r.fields['Titre'] && r.fields['Lien PDF'])
+      .filter((r) => r.fields['Visible'] && r.fields['Titre'] && (r.fields['Fichier PDF'] || [])[0])
       .map((r) => {
-        const piece = (r.fields['Fichier PDF'] || [])[0]
+        const piece = r.fields['Fichier PDF'][0]
         return {
           id: r.id,
           titre: r.fields['Titre'] ?? '',
@@ -52,8 +52,12 @@ export default async function handler(req, res) {
           ficheFamille: r.fields['Fiche (famille)'] ?? '',
           trancheAge: r.fields["Tranche d'âge"] ?? '',
           categorieSite: r.fields['Catégorie site'] ?? '',
-          lienPdf: r.fields['Lien PDF'] ?? '',
-          imageCouverture: piece?.thumbnails?.large?.url ?? '',
+          // Le champ pièce jointe « Fichier PDF » renvoie une URL re-signée
+          // par Airtable à chaque lecture ; le champ texte « Lien PDF » est
+          // une URL figée collée une fois, qui expire au bout de quelques
+          // heures. Ne jamais revenir à ce dernier pour le téléchargement.
+          lienPdf: piece.url,
+          imageCouverture: piece.thumbnails?.large?.url ?? '',
           datePublication: formaterDate(r.fields['Date de publication']),
         }
       })
