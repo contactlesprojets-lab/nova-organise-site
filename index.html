@@ -57,10 +57,7 @@
      ══════════════════════════════════════════════════ -->
 <script>
 const LIENS = {
-  formulaire: "https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform",   /* Google Forms liste d'attente */
-  facebook:   "https://www.facebook.com/nova.organise/",   /* page Facebook */
-  instagram:  "https://www.instagram.com/novaorganise/",   /* profil Instagram */
-  tiktok:     "https://www.tiktok.com/@novaorganise"    /* compte TikTok */
+  formulaire: "https://docs.google.com/forms/d/e/1FAIpQLSeq4idvs3ROW6e6oxFn7yiv-HnmtWqwd-IzxrkyHzjNebJgWg/viewform"   /* Google Forms liste d'attente */
 };
 </script>
 
@@ -356,9 +353,9 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
       </div>
     </div>
     <nav class="reseaux" aria-label="Réseaux sociaux">
-      <a id="lien-facebook" href="#">Facebook</a>
-      <a id="lien-instagram" href="#">Instagram</a>
-      <a id="lien-tiktok" href="#">TikTok</a>
+      <a href="https://www.facebook.com/nova.organise/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.instagram.com/novaorganise/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.tiktok.com/@novaorganise" target="_blank" rel="noopener noreferrer">TikTok</a>
       <a href="mailto:contact.lesprojets@gmail.com">contact.lesprojets@gmail.com</a>
     </nav>
     <div class="legal">
@@ -390,12 +387,6 @@ document.addEventListener('DOMContentLoaded', function () {
     zone.querySelector('.indispo').innerHTML = 'Le formulaire ouvre très bientôt.<br>En attendant, écrivez-nous : contact.lesprojets@gmail.com 💛';
     secours.style.display = 'none';
   }
-  // Réseaux sociaux
-  [['facebook','lien-facebook'],['instagram','lien-instagram'],['tiktok','lien-tiktok']].forEach(function (p) {
-    var a = document.getElementById(p[1]);
-    if (LIENS[p[0]]) { a.href = LIENS[p[0]]; a.target = '_blank'; a.rel = 'noopener'; }
-    else { a.style.display = 'none'; }
-  });
 });
 </script>
 </body>
