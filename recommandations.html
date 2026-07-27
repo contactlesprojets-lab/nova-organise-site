@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos recommandations — Nova-Organise</title>
+<meta name="description" content="Une sélection d'outils et de produits que l'équipe Nova-Organise recommande pour accompagner le quotidien des personnes concernées par un TND.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --beige: #F3EBE1;
+    --creme: #FBF7F2;
+    --lagune: #4F9DAD;
+    --turquoise: #8FCDD3;
+    --encre: #17444F;
+    --corail: #DF9468;
+    --rayon: 22px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--beige);
+    color: var(--encre);
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+    color: var(--encre);
+    margin: 0;
+  }
+  a { color: inherit; text-decoration: none; }
+  .skip{position:absolute;left:-999px;top:8px;background:var(--encre);color:#fff;padding:.6em 1em;border-radius:8px;z-index:99}
+  .skip:focus{left:8px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  /* Nav (identique au reste du site) */
+  header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,68,79,.08)}
+  .nav{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;flex-wrap:wrap}
+  .nav-logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:inherit}
+  .nav img{width:44px;height:44px;border-radius:50%}
+  .nav .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem}
+  .nav-links{display:flex;gap:1.2rem;margin-left:auto;flex-wrap:wrap;align-items:center}
+  .nav-links a{font-size:.9rem;font-weight:700;color:var(--encre);text-decoration:none;padding:.3em .7em;border-radius:8px;transition:background .15s}
+  .nav-links a:hover{background:rgba(23,68,79,.07)}
+  .nav-links a.actif{color:var(--lagune)}
+  .nav-links .cta-mini{background:var(--encre);color:#fff!important;border-radius:999px;padding:.45em 1.1em}
+  .nav-links .cta-mini:hover{background:var(--lagune)!important}
+
+  main { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  .eyebrow {
+    display: inline-block;
+    background: rgba(23,68,79,0.08);
+    color: var(--encre);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  h1.page-title { font-size: 2.1rem; margin-bottom: 14px; }
+  p.intro { max-width: 640px; font-size: 1.02rem; margin-bottom: 0; }
+
+  .disclosure {
+    margin-top: 28px;
+    background: #fff;
+    border-left: 4px solid var(--lagune);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--encre);
+  }
+
+  .reco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .reco-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(23, 68, 79, 0.08);
+    display: flex;
+    flex-direction: column;
+  }
+  .reco-badge {
+    align-self: flex-start;
+    background: rgba(79, 157, 173, 0.15);
+    color: var(--encre);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .reco-thumb {
+    background: var(--beige);
+    border-radius: 14px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .reco-thumb img { max-height: 170px; max-width: 100%; object-fit: contain; }
+  .reco-title { font-size: 1.15rem; margin-bottom: 6px; }
+  .reco-meta { font-size: 0.85rem; color: var(--lagune); font-weight: 700; margin-bottom: 10px; }
+  .reco-desc { font-size: 0.92rem; opacity: 0.9; margin-bottom: 18px; flex-grow: 1; }
+  .reco-cta {
+    background: var(--encre);
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .reco-note { font-size: 0.72rem; color: var(--encre); opacity: 0.65; text-align: center; margin-top: 8px; }
+
+  /* Pied de page (identique au reste du site) */
+  footer{background:var(--encre);color:rgba(251,247,242,.85);padding:2.6rem 0 2rem;font-size:.95rem;margin-top:60px}
+  footer .haut{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem}
+  footer img{width:52px;height:52px;border-radius:50%}
+  footer .marque{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem;color:#fff}
+  footer a{color:#8FCDD3;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .reseaux{display:flex;gap:1.2rem;flex-wrap:wrap;margin:.8rem 0 1.2rem}
+  footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line-height:1.6}
+
+  @media (max-width: 640px) {
+    .nav-links { gap: 14px; font-size: 0.85rem; }
+    h1.page-title { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html" aria-label="Nova-Organise — retour à l'accueil">
+      <img src="logo.png" alt="Logo Nova-Organise">
+      <span class="marque">Nova-Organise</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="ressources.html">Ressources</a>
+      <a href="telechargements.html">Fiches à imprimer</a>
+      <a href="enseignants-aesh.html">Enseignants &amp; AESH</a>
+      <a href="recommandations.html" class="actif">Recommandations</a>
+      <a href="index.html#liste-attente" class="cta-mini">Liste d'attente</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <span class="eyebrow">NOS RECOMMANDATIONS</span>
+  <h1 class="page-title">Des outils qu'on utilise ou qu'on recommande vraiment</h1>
+  <p class="intro">Pas de catalogue géant : juste quelques produits testés, choisis ou repérés pour accompagner le quotidien des personnes concernées par un trouble du neurodéveloppement (TDAH, TSA, dys, TDC…) et de leurs proches.</p>
+
+  <div class="disclosure">
+    🔗 Cette page contient des liens affiliés Amazon et Audible. Si vous achetez ou vous abonnez via ces liens, Nova-Organise touche une petite commission — cela ne change rien au prix pour vous, et ça nous aide à financer le développement de l'application. On ne recommande que des produits qu'on a choisis avec soin.
+  </div>
+
+  <div class="reco-grid">
+
+    <!-- Recommandation 1 -->
+    <div class="reco-card">
+      <span class="reco-badge">GESTION DU TEMPS</span>
+      <div class="reco-thumb">
+        <img src="https://m.media-amazon.com/images/I/61cqEsaD2KL._AC_SX679_.jpg" alt="Minuteur visuel Time Timer LIORQUE, 60 minutes">
+      </div>
+      <h3 class="reco-title">Minuteur visuel Time Timer — LIORQUE</h3>
+      <div class="reco-meta">★ 4,6/5 (5 167 avis) · 16,99 €</div>
+      <p class="reco-desc">Un disque coloré qui rétrécit à mesure que le temps passe, sans compte à rebours numérique anxiogène. Idéal pour rendre le temps visible et accompagner les transitions et les routines.</p>
+      <a class="reco-cta" href="https://www.amazon.fr/dp/B0C3GT78CD?tag=novaorganise2-21" target="_blank" rel="nofollow sponsored noopener">Voir sur Amazon</a>
+      <div class="reco-note">Lien affilié Amazon</div>
+    </div>
+
+    <!-- Pour ajouter une nouvelle recommandation Amazon : dupliquer le bloc .reco-card ci-dessus,
+         changer le badge, l'image, le titre, la note/prix, la description et le lien
+         (toujours avec ?tag=novaorganise2-21 à la fin de l'URL produit). -->
+
+  </div>
+
+  <h2 style="font-size:1.4rem; margin-top:56px; margin-bottom:6px;">🎧 Livres audio (Audible)</h2>
+  <p class="intro" style="margin-bottom:0;">Trois écoutes choisies pour trois publics différents : les enfants, les adultes concernés, et les professionnels qui les accompagnent.</p>
+
+  <div class="reco-grid">
+
+    <!-- Livre audio 1 : enfants -->
+    <div class="reco-card">
+      <span class="reco-badge">ENFANTS</span>
+      <div class="reco-thumb">
+        <img src="https://m.media-amazon.com/images/I/51HkLGsLqrL._SL500_.jpg" alt="Couverture du livre audio Histoires en pleine conscience pour enfants">
+      </div>
+      <h3 class="reco-title">Histoires en pleine conscience pour enfants</h3>
+      <div class="reco-meta">★ 5,0/5 (5 avis) · 2 h 47 · 11,93 €</div>
+      <p class="reco-desc">Des histoires de relaxation à écouter le soir ou en pause calme, pour aider l'enfant à se recentrer et à mieux reconnaître ses émotions. Un bon complément aux routines visuelles quand il faut redescendre en pression.</p>
+      <a class="reco-cta" href="https://www.amazon.fr/hz/audible/mlp/mfpdp/B0BK9DC162?actionCode=AMSTM1450129210001&tag=novaorganise2-21" target="_blank" rel="nofollow sponsored noopener">Écouter sur Audible</a>
+      <div class="reco-note">Lien affilié Audible</div>
+    </div>
+
+    <!-- Livre audio 2 : adultes TND -->
+    <div class="reco-card">
+      <span class="reco-badge">ADULTES TND</span>
+      <div class="reco-thumb">
+        <img src="https://m.media-amazon.com/images/I/51zNtRCOX9L._SL500_.jpg" alt="Couverture du livre audio TDAH, et alors ? par Catherine Testa">
+      </div>
+      <h3 class="reco-title">TDAH, et alors ? — Catherine Testa</h3>
+      <div class="reco-meta">★ 4,9/5 (59 avis) · 4 h 32 · 13,99 €</div>
+      <p class="reco-desc">Écrit par une créatrice de contenu diagnostiquée TDAH à l'âge adulte : comment mieux comprendre son fonctionnement peut tout changer. Pour les ados et adultes concernés qui cherchent à se reconnaître plutôt qu'à se juger.</p>
+      <a class="reco-cta" href="https://www.amazon.fr/hz/audible/mlp/mfpdp/B0DJRHXHS5?actionCode=AMSTM1450129210001&tag=novaorganise2-21" target="_blank" rel="nofollow sponsored noopener">Écouter sur Audible</a>
+      <div class="reco-note">Lien affilié Audible</div>
+    </div>
+
+    <!-- Livre audio 3 : professionnels de santé et enseignants -->
+    <div class="reco-card">
+      <span class="reco-badge">ENSEIGNANTS &amp; PRO DE SANTÉ</span>
+      <div class="reco-thumb">
+        <img src="https://m.media-amazon.com/images/I/51nE4TcTq1L._SL500_.jpg" alt="Couverture du livre audio Dans le cerveau de mon enfant, par Michèle Mazeau et Alain Pouhet">
+      </div>
+      <h3 class="reco-title">Dans le cerveau de mon enfant — Dr Michèle Mazeau, Dr Alain Pouhet</h3>
+      <div class="reco-meta">★ 3,8/5 (16 avis) · 5 h 15 · 14,99 €</div>
+      <p class="reco-desc">Par deux figures reconnues des troubles neurodéveloppementaux en France. Une explication accessible du fonctionnement du cerveau de l'enfant TND — utile pour les enseignants, AESH et professionnels de santé qui accompagnent au quotidien.</p>
+      <a class="reco-cta" href="https://www.amazon.fr/hz/audible/mlp/mfpdp/B082SYS2S2?actionCode=AMSTM1450129210001&tag=novaorganise2-21" target="_blank" rel="nofollow sponsored noopener">Écouter sur Audible</a>
+      <div class="reco-note">Lien affilié Audible</div>
+    </div>
+
+    <!-- Pour ajouter un nouveau livre audio : dupliquer un bloc .reco-card ci-dessus,
+         changer le badge, l'image de couverture, le titre, la note/durée/prix, la description
+         et le lien (toujours avec ?tag=novaorganise2-21 à la fin de l'URL produit Audible). -->
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="haut">
+      <img src="logo.png" alt="">
+      <div>
+        <div class="marque">Nova-Organise</div>
+        <div>Un projet en construction — entraide · solidarité · équité 🪜</div>
+      </div>
+    </div>
+    <nav class="reseaux" aria-label="Réseaux sociaux">
+      <a href="https://www.facebook.com/nova.organise/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.instagram.com/novaorganise/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.tiktok.com/@novaorganise" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="mailto:contact.lesprojets@gmail.com">contact.lesprojets@gmail.com</a>
+    </nav>
+    <div class="legal">
+      © 2026 Nova-Organise — Tous droits réservés.<br>
+      Mentions légales et politique de confidentialité à venir.
+    </div>
+  </div>
+</footer>
+
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

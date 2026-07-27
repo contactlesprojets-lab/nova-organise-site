@@ -77,6 +77,12 @@
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
 </url>
+<!--  Page Recommandations — mise à jour occasionnelle  -->
+<url>
+<loc>https://www.nova-organise.fr/recommandations.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
 <!--  Article — Glossaire MDPH  -->
 <url>
 <loc>https://www.nova-organise.fr/ressources/glossaire-mdph</loc>
