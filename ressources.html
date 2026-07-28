@@ -66,7 +66,6 @@ let POSTS = [
     texte: "Quatre sigles souvent mélangés ou confondus. Ce qu'ils désignent réellement, en clair et sans jugement — la base pour comprendre le reste de nos articles.",
     image: null,
     lien: "ressources/tdah-tsa-dys-tdc",
-    partielGratuit: true,
     liens: { fb: null, ig: null, tt: null }
   },
   {
@@ -99,7 +98,6 @@ let POSTS = [
     texte: "MDPH, CDAPH, GEVA-Sco, PPS, AEEH, AAH, RQTH, CMI, PCH, AESH... Ce qu'ils désignent, en clair, et à quel moment ils entrent en jeu.",
     image: null,
     lien: "ressources/glossaire-mdph",
-    partielGratuit: true,
     liens: { fb: null, ig: null, tt: null }
   },
   {
@@ -110,7 +108,6 @@ let POSTS = [
     texte: "Pourquoi et quand déposer un renouvellement, comment retrouver sa date d'échéance, et pourquoi compter large avec le délai de réponse.",
     image: null,
     lien: "ressources/renouvellement-mdph",
-    partielGratuit: true,
     liens: { fb: null, ig: null, tt: null }
   },
   /* ── EN CLASSE ─────────────────────────────────────── */
@@ -122,7 +119,6 @@ let POSTS = [
     texte: "Des ajustements concrets qu'un enseignant peut mettre en place dès demain, sans AESH ni matériel spécifique.",
     image: null,
     lien: "ressources/amenagements-classe-tdah",
-    partielGratuit: true,
     liens: { fb: null, ig: null, tt: null }
   },
   /* ── POUR VOUS ─────────────────────────────────────── */
@@ -143,7 +139,6 @@ let POSTS = [
     texte: "Rendez-vous à caser, dossiers à suivre, mémoire du quotidien portée seul·e. En parler, c'est déjà l'alléger un peu.",
     image: null,
     lien: "ressources/charge-mentale-parents-tnd",
-    partielGratuit: true,
     liens: { fb: null, ig: null, tt: null }
   },
   /* ── COULISSES ─────────────────────────────────────── */
@@ -345,6 +340,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
       <a href="ressources.html" class="actif">Ressources</a>
       <a href="telechargements.html">Fiches à imprimer</a>
       <a href="enseignants-aesh.html">Enseignants &amp; AESH</a>
+      <a href="contact.html">Contact</a>
       <a href="recommandations.html">Recommandations</a>
       <a href="index.html#liste-attente" class="cta-mini">Liste d'attente</a>
     </nav>
@@ -588,7 +584,5 @@ chargerAstucesAirtable()
     console.error("Astuces Airtable non chargées :", erreur.message);
   });
 </script>
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
