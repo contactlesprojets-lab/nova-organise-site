@@ -211,6 +211,26 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop
 .hero-res h1{font-size:clamp(1.8rem,4.5vw,2.8rem);max-width:16em;margin:0 auto .8rem}
 .hero-res p{max-width:36em;margin:0 auto;color:rgba(23,68,79,.75);font-size:1.05rem}
 
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ── Recherche ── */
+.recherche-wrap{
+  display:flex;align-items:center;gap:.6em;
+  max-width:26em;margin:1.6rem auto 0;
+  background:#fff;border:2px solid rgba(23,68,79,.12);border-radius:999px;
+  padding:.3em .3em .3em 1.1em;
+  transition:border-color .15s;
+}
+.recherche-wrap:focus-within{border-color:var(--lagune)}
+.recherche-label{display:flex;align-items:center;font-size:1.1rem;color:rgba(23,68,79,.5)}
+.recherche-champ{
+  flex:1;border:none;outline:none;background:none;
+  font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-size:.95rem;color:var(--encre);
+  padding:.7em .4em;
+}
+.recherche-champ::placeholder{color:rgba(23,68,79,.4)}
+.recherche-champ::-webkit-search-cancel-button{cursor:pointer}
+
 /* ── Onglets ── */
 .onglets-wrap{background:var(--creme);border-bottom:1px solid rgba(23,68,79,.08);position:sticky;top:64px;z-index:40}
 .onglets{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;padding:0 22px}
@@ -338,6 +358,7 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
     <nav class="nav-links">
       <a href="index.html">Accueil</a>
       <a href="ressources.html" class="actif">Ressources</a>
+      <a href="ressources.html#recherche" aria-label="Rechercher un article">🔍</a>
       <a href="telechargements.html">Fiches à imprimer</a>
       <a href="enseignants-aesh.html">Enseignants &amp; AESH</a>
       <a href="contact.html">Contact</a>
@@ -353,6 +374,19 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
       <span class="eyebrow">Toutes nos publications</span>
       <h1>Ressources & conseils 🪜</h1>
       <p>Chaque semaine, des tips concrets sur le TND, les démarches, l'école et l'accompagnement — classés par thème pour trouver facilement ce qui vous est utile.</p>
+
+      <div class="recherche-wrap" id="recherche">
+        <label class="recherche-label" for="recherche-champ">
+          <span aria-hidden="true">🔍</span>
+          <span class="sr-only">Rechercher un article</span>
+        </label>
+        <input
+          type="search"
+          id="recherche-champ"
+          class="recherche-champ"
+          placeholder="Rechercher un article (ex. MDPH, école, aidant...)"
+        >
+      </div>
     </div>
   </div>
 
@@ -422,6 +456,21 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.5);margin-top:1.2rem;line
    ══════════════════════════════════════════════════ */
 
 var serieActuelle = "TOUS";
+var rechercheActuelle = "";
+
+/* Insensible aux accents et à la casse : "ecole" retrouve "école". */
+function normaliser(texte) {
+  return (texte || "")
+    .normalize("NFD")
+    .replace(/\p{Mn}/gu, "")
+    .toLowerCase();
+}
+
+function correspondRecherche(post, requete) {
+  if (!requete) return true;
+  var cible = normaliser(post.titre + " " + post.texte);
+  return cible.indexOf(normaliser(requete)) !== -1;
+}
 
 /* Compter les posts par série et mettre à jour les badges */
 function majCompteurs() {
@@ -491,11 +540,13 @@ function creerCarte(post) {
     + '</article>';
 }
 
-/* Afficher les posts filtrés */
+/* Afficher les posts filtrés (par série ET par recherche, combinées) */
 function afficher(serie) {
   var filtered = serie === "TOUS"
     ? POSTS
     : POSTS.filter(function(p){ return p.serie === serie; });
+
+  filtered = filtered.filter(function(p) { return correspondRecherche(p, rechercheActuelle); });
 
   /* Trier du plus récent au plus ancien (par id décroissant) */
   filtered = filtered.slice().reverse();
@@ -504,16 +555,20 @@ function afficher(serie) {
   var compteur = document.getElementById("compteur-txt");
 
   if (filtered.length === 0) {
+    var texteVide = rechercheActuelle
+      ? "Aucun article ne correspond à « " + rechercheActuelle + " ».<br>Essayez un autre mot-clé 💛"
+      : "Aucun contenu dans cette catégorie pour le moment.<br>Revenez bientôt 💛";
     grille.innerHTML = '<div class="vide" role="listitem">'
       + '<span style="font-size:2.5rem">' + (SERIES[serie] ? SERIES[serie].emoji : "🔍") + '</span>'
-      + '<p>Aucun contenu dans cette catégorie pour le moment.<br>Revenez bientôt 💛</p>'
+      + '<p>' + texteVide + '</p>'
       + '</div>';
     compteur.textContent = "";
   } else {
     grille.innerHTML = filtered.map(creerCarte).join("");
     var mot = filtered.length > 1 ? " publications" : " publication";
     compteur.textContent = filtered.length + mot
-      + (serie !== "TOUS" ? " · " + (SERIES[serie].emoji || "") + " " + serie : "");
+      + (serie !== "TOUS" ? " · " + (SERIES[serie].emoji || "") + " " + serie : "")
+      + (rechercheActuelle ? " · recherche « " + rechercheActuelle + " »" : "");
   }
 }
 
@@ -533,11 +588,26 @@ function initOnglets() {
   });
 }
 
+/* Recherche en direct, à chaque frappe. */
+function initRecherche() {
+  var champ = document.getElementById("recherche-champ");
+  champ.addEventListener("input", function() {
+    rechercheActuelle = champ.value.trim();
+    afficher(serieActuelle);
+  });
+  /* Arrivée via le lien 🔍 de l'en-tête (#recherche, sur toutes les
+     pages du site) : place le focus directement dans le champ. */
+  if (window.location.hash === "#recherche") {
+    champ.focus();
+  }
+}
+
 /* Init : affichage immédiat des publications déjà connues (rien à
    attendre), puis complément avec les astuces Airtable une fois arrivées. */
 majCompteurs();
 afficher("TOUS");
 initOnglets();
+initRecherche();
 
 /* ══════════════════════════════════════════════════
    Connexion Airtable — table Astuces
