@@ -131,6 +131,12 @@
 <changefreq>yearly</changefreq>
 <priority>0.5</priority>
 </url>
+<!--  Page Qui suis-je ?  -->
+<url>
+<loc>https://www.nova-organise.fr/qui-suis-je.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
 <!--  Article — Autisme à l'âge adulte  -->
 <url>
 <loc>https://www.nova-organise.fr/ressources/autisme-adulte</loc>
