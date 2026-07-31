@@ -325,13 +325,22 @@
     if (bandeau) bandeau.hidden = true;
   }
 
-  var choix = localStorage.getItem(CLE);
+  // localStorage peut être bloqué (réglages de confidentialité du
+  // navigateur, extension, politique d'entreprise...) : dans ce cas,
+  // setItem/getItem lèvent une exception. Ça ne doit jamais empêcher le
+  // bandeau de réagir au clic — juste faire réafficher le bandeau à la
+  // visite suivante si la mémorisation échoue.
+  function memoriser(valeur) {
+    try { localStorage.setItem(CLE, valeur); } catch (erreur) {}
+  }
+  function choixMemorise() {
+    try { return localStorage.getItem(CLE); } catch (erreur) { return null; }
+  }
+
+  var choix = choixMemorise();
   if (choix === 'accepte') {
     chargerPixelMeta();
   } else if (choix !== 'refuse') {
-    // Le bandeau précède ce script dans le HTML : déjà présent dans le
-    // DOM à ce stade de l'analyse de la page, pas besoin d'attendre
-    // DOMContentLoaded pour l'afficher.
     var bandeau = document.getElementById('bandeau-cookies');
     if (bandeau) bandeau.hidden = false;
   }
@@ -341,12 +350,14 @@
   // dans le DOM, sans dépendre de l'ordre d'exécution des scripts.
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-accepter]')) {
-      localStorage.setItem(CLE, 'accepte');
+      // Le bandeau doit disparaître même si la mémorisation du choix
+      // échoue : on le masque d'abord, la persistance est secondaire.
       masquerBandeau();
+      memoriser('accepte');
       chargerPixelMeta();
     } else if (e.target.closest('[data-refuser]')) {
-      localStorage.setItem(CLE, 'refuse');
       masquerBandeau();
+      memoriser('refuse');
     }
   });
 })();
