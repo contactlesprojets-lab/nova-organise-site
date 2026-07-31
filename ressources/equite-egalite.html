@@ -230,5 +230,63 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 </footer>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Bandeau de consentement cookies + Meta Pixel (chargé seulement après acceptation) -->
+<div id="bandeau-cookies" class="bandeau-cookies" hidden>
+  <p>Nous aimerions utiliser un cookie de mesure d'audience (Meta) pour savoir comment vous découvrez Nova-Organise. Vous pouvez refuser sans que ça change votre navigation.</p>
+  <div class="bandeau-cookies-actions">
+    <button type="button" data-refuser>Refuser</button>
+    <button type="button" data-accepter>Accepter</button>
+  </div>
+</div>
+<style>
+.bandeau-cookies{position:fixed;left:0;right:0;bottom:0;z-index:999;background:#17444F;color:#FBF7F2;padding:1rem 1.2rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:space-between;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-size:.92rem;line-height:1.5;box-shadow:0 -4px 16px rgba(0,0,0,.15)}
+.bandeau-cookies p{margin:0;max-width:62ch;flex:1 1 260px}
+.bandeau-cookies-actions{display:flex;gap:.6rem;flex-shrink:0}
+.bandeau-cookies-actions button{border-radius:999px;padding:.55em 1.3em;font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit}
+.bandeau-cookies-actions button[data-accepter]{background:#DF9468;color:#17444F;border:none}
+.bandeau-cookies-actions button[data-refuser]{background:transparent;color:#FBF7F2;border:1px solid rgba(251,247,242,.5)}
+.bandeau-cookies-actions button[data-accepter]:hover{background:#c87941}
+.bandeau-cookies-actions button[data-refuser]:hover{background:rgba(251,247,242,.1)}
+</style>
+<script>
+(function () {
+  function chargerPixelMeta() {
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '28048886238039820');
+    fbq('track', 'PageView');
+  }
+  var CLE = 'nova-consentement-cookies';
+  var choix = localStorage.getItem(CLE);
+  if (choix === 'accepte') {
+    chargerPixelMeta();
+  } else if (choix !== 'refuse') {
+    document.addEventListener('DOMContentLoaded', function () {
+      var bandeau = document.getElementById('bandeau-cookies');
+      if (!bandeau) return;
+      bandeau.hidden = false;
+      bandeau.querySelector('[data-accepter]').addEventListener('click', function () {
+        localStorage.setItem(CLE, 'accepte');
+        bandeau.hidden = true;
+        chargerPixelMeta();
+      });
+      bandeau.querySelector('[data-refuser]').addEventListener('click', function () {
+        localStorage.setItem(CLE, 'refuse');
+        bandeau.hidden = true;
+      });
+    });
+  }
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=28048886238039820&ev=PageView&noscript=1"
+/></noscript>
+<!-- Fin bandeau cookies + Meta Pixel -->
 </body>
 </html>
