@@ -250,6 +250,8 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 </style>
 <script>
 (function () {
+  var CLE = 'nova-consentement-cookies';
+
   function chargerPixelMeta() {
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -262,26 +264,36 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
     fbq('init', '28048886238039820');
     fbq('track', 'PageView');
   }
-  var CLE = 'nova-consentement-cookies';
+
+  function masquerBandeau() {
+    var bandeau = document.getElementById('bandeau-cookies');
+    if (bandeau) bandeau.hidden = true;
+  }
+
   var choix = localStorage.getItem(CLE);
   if (choix === 'accepte') {
     chargerPixelMeta();
   } else if (choix !== 'refuse') {
-    document.addEventListener('DOMContentLoaded', function () {
-      var bandeau = document.getElementById('bandeau-cookies');
-      if (!bandeau) return;
-      bandeau.hidden = false;
-      bandeau.querySelector('[data-accepter]').addEventListener('click', function () {
-        localStorage.setItem(CLE, 'accepte');
-        bandeau.hidden = true;
-        chargerPixelMeta();
-      });
-      bandeau.querySelector('[data-refuser]').addEventListener('click', function () {
-        localStorage.setItem(CLE, 'refuse');
-        bandeau.hidden = true;
-      });
-    });
+    // Le bandeau précède ce script dans le HTML : déjà présent dans le
+    // DOM à ce stade de l'analyse de la page, pas besoin d'attendre
+    // DOMContentLoaded pour l'afficher.
+    var bandeau = document.getElementById('bandeau-cookies');
+    if (bandeau) bandeau.hidden = false;
   }
+
+  // Écouteur posé sur document (délégation), pas sur les boutons
+  // eux-mêmes : fonctionne quel que soit le moment où le bandeau existe
+  // dans le DOM, sans dépendre de l'ordre d'exécution des scripts.
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-accepter]')) {
+      localStorage.setItem(CLE, 'accepte');
+      masquerBandeau();
+      chargerPixelMeta();
+    } else if (e.target.closest('[data-refuser]')) {
+      localStorage.setItem(CLE, 'refuse');
+      masquerBandeau();
+    }
+  });
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none"
