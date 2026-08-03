@@ -68,6 +68,18 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.9);backdrop
 .nav-links .cta-mini{background:var(--encre);color:#fff!important;border-radius:999px;padding:.45em 1.1em}
 .nav-links .cta-mini:hover{background:var(--lagune)!important}
 
+.dropdown{position:relative}
+.dropdown-trigger{font-family:inherit;font-size:.88rem;font-weight:700;color:var(--encre);background:none;border:none;cursor:pointer;padding:.3em .7em;border-radius:8px;display:inline-flex;align-items:center;gap:.3em;transition:background .15s}
+.dropdown-trigger:hover,.dropdown-trigger[aria-expanded="true"]{background:rgba(23,68,79,.07)}
+.dropdown-trigger.actif{color:var(--lagune)}
+.dropdown .chevron{font-size:.7em;transition:transform .15s ease}
+.dropdown-trigger[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:210px;background:#FBF7F2;border:1px solid rgba(23,68,79,.1);border-radius:14px;box-shadow:0 12px 28px rgba(23,68,79,.16);padding:.4rem;z-index:60}
+.dropdown-menu:not([hidden]){display:flex;flex-direction:column;gap:2px}
+.dropdown-menu a{font-size:.88rem;font-weight:700;color:var(--encre);text-decoration:none;padding:.6em .8em;border-radius:8px;white-space:nowrap}
+.dropdown-menu a:hover,.dropdown-menu a:focus-visible{background:rgba(23,68,79,.07)}
+.dropdown-menu a.actif{color:var(--lagune)}
+
 .fil{font-size:.85rem;color:rgba(23,68,79,.55);padding:1.4rem 0 0}
 .fil a{color:rgba(23,68,79,.55);text-decoration:none}
 .fil a:hover{text-decoration:underline}
@@ -129,13 +141,20 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
     </a>
     <nav class="nav-links">
       <a href="index.html">Accueil</a>
-      <a href="ressources.html">Ressources</a>
+      <div class="dropdown" id="ressourcesDropdown">
+        <button type="button" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="ressourcesMenu">
+          Ressources <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="dropdown-menu" id="ressourcesMenu" role="menu" hidden>
+          <a href="ressources.html" role="menuitem">📖 Toutes les ressources</a>
+          <a href="telechargements.html" role="menuitem">🖍️ Fiches à imprimer</a>
+          <a href="enseignants-aesh.html" role="menuitem">🍎 Enseignants &amp; AESH</a>
+          <a href="recommandations.html" role="menuitem">🎁 Recommandations</a>
+        </div>
+      </div>
       <a href="ressources.html#recherche" aria-label="Rechercher un article">🔍</a>
-      <a href="telechargements.html">Fiches à imprimer</a>
-      <a href="enseignants-aesh.html">Enseignants &amp; AESH</a>
-      <a href="contact.html">Contact</a>
-      <a href="recommandations.html">Recommandations</a>
       <a href="qui-suis-je.html" class="actif">Qui suis‑je ?</a>
+      <a href="contact.html">Contact</a>
       <a href="index.html#liste-attente" class="cta-mini">Liste d'attente</a>
     </nav>
   </div>
@@ -302,5 +321,56 @@ footer .legal{font-size:.82rem;color:rgba(251,247,242,.55);margin-top:1.2rem;lin
 src="https://www.facebook.com/tr?id=28048886238039820&ev=PageView&noscript=1"
 /></noscript>
 <!-- Fin bandeau cookies + Meta Pixel -->
+<script>
+(function () {
+  var conteneur = document.getElementById('ressourcesDropdown');
+  if (!conteneur) return;
+  var bouton = conteneur.querySelector('.dropdown-trigger');
+  var menu = conteneur.querySelector('.dropdown-menu');
+  var items = [].slice.call(menu.querySelectorAll('a'));
+
+  function estOuvert() { return !menu.hidden; }
+  function ouvrir() {
+    menu.hidden = false;
+    bouton.setAttribute('aria-expanded', 'true');
+  }
+  function fermer(rendreLeFocus) {
+    menu.hidden = true;
+    bouton.setAttribute('aria-expanded', 'false');
+    if (rendreLeFocus) bouton.focus();
+  }
+
+  bouton.addEventListener('click', function () {
+    if (estOuvert()) fermer(false); else ouvrir();
+  });
+
+  conteneur.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (estOuvert()) { e.preventDefault(); fermer(true); }
+      return;
+    }
+    if (e.target === bouton && e.key === 'ArrowDown') {
+      e.preventDefault();
+      ouvrir();
+      if (items[0]) items[0].focus();
+      return;
+    }
+    var index = items.indexOf(e.target);
+    if (index !== -1) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        items[(index + 1) % items.length].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        items[(index - 1 + items.length) % items.length].focus();
+      }
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (estOuvert() && !conteneur.contains(e.target)) fermer(false);
+  });
+})();
+</script>
 </body>
 </html>
